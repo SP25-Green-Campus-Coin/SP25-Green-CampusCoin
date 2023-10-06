@@ -80,5 +80,9 @@
   </MauiXaml>
 </ItemGroup>
 
+<ItemGroup>
+  <Folder Include="Models\DBModels\" />
+</ItemGroup>
+
 
 </Project>
