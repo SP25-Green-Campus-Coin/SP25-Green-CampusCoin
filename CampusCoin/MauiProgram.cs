@@ -69,13 +69,24 @@ public static class MauiProgram
 
     public static MauiAppBuilder RegisterDatabase(this MauiAppBuilder mauiAppBuilder)
     {
-        mauiAppBuilder
-            .Services
-            .AddDbContextFactory<CampusCoinContext>(options =>
-            {
-                //todo: replace with environment variable or config file rather than hard coded connection string
-                options.UseSqlServer("Server=tcp:sp25greenseniorproject.database.windows.net,1433;Initial Catalog=CampusCoin;Persist Security Info=False;User ID=sp25green;Password=kennesaw123@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            });
+        try
+        {
+            mauiAppBuilder
+                .Services
+                .AddDbContextFactory<CampusCoinContext>(options =>
+                {
+                    //todo: replace with environment variable or config file rather than hard coded connection string
+                    options.UseSqlServer(
+                        "Server=tcp:sp25greenseniorproject.database.windows.net,1433;Initial Catalog=CampusCoin;Persist Security Info=False;User ID=sp25green;Password=kennesaw123@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                });
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            throw;
+        }
+
+
 
         return mauiAppBuilder;
     }   

@@ -69,15 +69,25 @@ namespace CampusCoin.ViewModels
         {
             try
             {
-                using (var context = _testContextFactory.CreateDbContext())
+                await using (var context = await _testContextFactory.CreateDbContextAsync())
                 {
-                    var test = context.Users.ToList();
-                    await _messageOutputHandlingService.OutputSuccessToUser($"Database connection successful. Found {test.Count} users.");
+                    try
+                    {
+                        await context.Database.EnsureCreatedAsync();
+                        var test = context.Users.ToList() ?? new List<Users>();
+                        await _messageOutputHandlingService.OutputSuccessToUser($"Database connection successful. Found {test.Count} users.");
+                    }
+                    catch (Exception ex)
+                    {
+                        await _messageOutputHandlingService.OutputValidationErrorsToUser(new List<ValidationResult> { new ValidationResult($"Database connection failed. {ex.Message}") });
+                      
+                    }
                 }
             }
             catch (Exception ex)
             {
                 await _messageOutputHandlingService.OutputValidationErrorsToUser(new List<ValidationResult> { new ValidationResult($"Database connection failed. {ex.Message}") });
+               
             }
 
 
