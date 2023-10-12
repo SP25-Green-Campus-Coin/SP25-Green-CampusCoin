@@ -51,7 +51,7 @@
             <Button 
             x:Name="Submit"
             Text="{Binding SubmitText}"
-            SemanticProperties.Hint="Submit's your information to be registered"
+            SemanticProperties.Hint="Submit your information to be registered"
             Command="{Binding SubmitCommand}"
             HorizontalOptions="Center" />
         </VerticalStackLayout>

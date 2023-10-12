@@ -10,12 +10,23 @@ using CampusCoin.Models;
 using CampusCoin.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using System.Windows.Input;
+
 namespace CampusCoin.ViewModels
 {
     public partial class MainPageViewModel : ObservableValidator
     {
         private readonly IMessageOutputHandlingService _messageOutputHandlingService;
         private readonly IDbContextFactory<CampusCoinContext> _testContextFactory;
+        public ICommand BeginRegistration { get; set; }
+        public string Registration => "Registration Page";
+
+        [RelayCommand]
+        public async Task OpenRegistrationPage()
+        {
+
+            await Shell.Current.GoToAsync(nameof(Views.RegistrationPage));
+        }
 
         // note that the IMessageOutputHandlingService is injected into the constructor- https://learn.microsoft.com/en-us/dotnet/architecture/maui/dependency-injection
         // this is necessary in our case for unit tests to be able to mock the service
@@ -27,6 +38,7 @@ namespace CampusCoin.ViewModels
             // initialize count and counter text
             Count = 0;
             CounterText = GetCounterText();
+
         }
 
         // Observable property for count with validation attributes - https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/generators/observableproperty

@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
-namespace ShellMixedSample.Models
+namespace CampusCoin.Models
 {
     // This class handles the registration page data (which is the purpose of model classes) It performs input validation for the registration page VM and View & creates users once all validate properly
     internal class RegistrationPage

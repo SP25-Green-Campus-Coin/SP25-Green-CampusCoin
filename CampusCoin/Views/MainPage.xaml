@@ -24,10 +24,10 @@
                 HorizontalOptions="Center" />
 
             <Button 
-                x:Name="CounterBtn"
-                Text="{Binding CounterText}"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Command="{Binding IncrementCountCommand}"
+                x:Name="Register"
+                Text="{Binding Registration}"
+                SemanticProperties.Hint="Opens the registration page"
+                Command="{Binding OpenRegistrationPageCommand}" 
                 HorizontalOptions="Center" />
             <Button 
                 x:Name="DatabaseTestBtn"
