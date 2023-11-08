@@ -24,7 +24,7 @@ public partial class LoginPageViewModel : ObservableValidator
     [ObservableProperty]
     string email;
 
-    //[PasswordValidation]
+    [PasswordValidation]
     [ObservableProperty]
     string password;
 
@@ -33,8 +33,6 @@ public partial class LoginPageViewModel : ObservableValidator
     LoginService loginService;
 
     public ObservableCollection<Users> UsersCollection { get; } = new();
-
-    Users user;
 
     public LoginPageViewModel(LoginService loginService, IMessageOutputHandlingService messageOutputHandlingService)
     {
